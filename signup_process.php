@@ -4,7 +4,7 @@ include('connection.php');
 session_start();
 
 if(isset($_POST['signup'])){
-    // Correct function name is htmlspecialchars
+    // htmlspecialchars
     $username = htmlspecialchars($_POST['username']);
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
@@ -12,7 +12,7 @@ if(isset($_POST['signup'])){
     $last_name = htmlspecialchars($_POST['last_name']);
     $date_of_birth = htmlspecialchars($_POST['date_of_birth']);
 
-    // Correct way to call password_hash function
+    //password_hash function
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $connection->prepare("INSERT INTO users (username, email, password_hash, first_name, last_name, date_of_birth) VALUES (?, ?, ?, ?, ?, ?)");
@@ -20,7 +20,7 @@ if(isset($_POST['signup'])){
 
     // Execute the prepared statement
     if ($stmt->execute()) {
-        echo "Sign up successful";
+        header("Location: login.html");
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -44,7 +44,7 @@ if(isset($_POST['login'])){
         if (password_verify($password, $row['password_hash'])) {
             // Password is correct, set session variables
             $_SESSION['username'] = $username;
-            echo "Login successful";
+            header("Location: home.html");
         } else {
             // Password is incorrect
             echo "Incorrect password";

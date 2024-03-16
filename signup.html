@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGN UP FORM</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&amp;display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <style media="screen">
         *,
@@ -132,31 +133,34 @@
   }
   
       </style>
-<body>
+</head><body>
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
+    <form action="signup_process.php" method="post">
         <h3>Sign Up Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Username" id="username">
+        <input type="text" placeholder="Username" id="username" name="username">
+
+        <label for="username">First name</label>
+        <input type="text" placeholder="First name" id="first_name" name="first_name">
 
         <label for="email">Email</label>
-        <input type="email" placeholder="Email" id="email">
+        <input type="email" placeholder="Email" id="email" name="email">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" placeholder="Password" id="password" name="password">
 
         <label for="confirm-password">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" id="confirm-password">
+        <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirm-password">
         <div class="login-link">
             Already have an account? <a href="login.html">Log in here.</a>
         </div>
         
 
-        <button>Sign Up</button>
+        <button type="submit" name="signup">Sign Up</button>
     </form>
 </body>
 </html>
