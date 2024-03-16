@@ -1,7 +1,9 @@
 <?php
 include('connection.php');
 
-if(isset($_POST['submit'])){
+session_start();
+
+if(isset($_POST['signup'])){
     // Correct function name is htmlspecialchars
     $username = htmlspecialchars($_POST['username']);
     $email = htmlspecialchars($_POST['email']);
@@ -18,20 +20,43 @@ if(isset($_POST['submit'])){
 
     // Execute the prepared statement
     if ($stmt->execute()) {
-        echo "New record created successfully";
+        echo "Sign up successful";
     } else {
         echo "Error: " . $stmt->error;
     }
 
     // Close statement
     $stmt->close();
-
-    // Optionally, close the connection if it's no longer needed
-    // $connection->close();
-
-    // It's generally not a good practice to echo inputs directly for security reasons
-    // Consider redirecting to another page or displaying a success message
-} else {
-    echo "Form not submitted";
 }
+
+if(isset($_POST['login'])){
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+
+    $stmt = $connection->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // User found
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password_hash'])) {
+            // Password is correct, set session variables
+            $_SESSION['username'] = $username;
+            echo "Login successful";
+        } else {
+            // Password is incorrect
+            echo "Incorrect password";
+        }
+    } else {
+        // User not found
+        echo "User not found";
+    }
+
+    // Close statement
+    $stmt->close();
+}
+
+$connection->close();
 ?>
