@@ -21,6 +21,7 @@ if(isset($_POST['signup'])){
     // Execute the prepared statement
     if ($stmt->execute()) {
         header("Location: login.html");
+        exit;
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -45,6 +46,7 @@ if(isset($_POST['login'])){
             // Password is correct, set session variables
             $_SESSION['username'] = $username;
             header("Location: home.html");
+            exit;
         } else {
             // Password is incorrect
             echo "Incorrect password";
