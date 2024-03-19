@@ -52,29 +52,16 @@
 </head>
 <body>
 
-<form id="loginForm" onsubmit="return login()">
-  <h2>Admin Dashboard Login</h2>
-  <input type="text" id="username" name="username" placeholder="Username" required>
-  <input type="password" id="password" name="password" placeholder="Password" required>
-  <input type="submit" value="Login">
-</form>
+  <form id="loginForm" action="admin.php" method="post">
+    <h2>Admin Dashboard Sign Up</h2>
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="password" placeholder="Confirm Password" id="confirm-password" name="confirm-password">
+        <div class="login-link">
+    <input type="submit" value="Sign In" name="submit">
+  </form>
 
-<script>
-  function login() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
 
-    if (username === "admin" && password === "admin") {
-      alert("Login successful!");
-      // Redirect to admin dashboard
-      window.location.href = "dashboard.html";
-      return false; // Prevent form submission since we're redirecting
-    } else {
-      alert("Invalid username or password. Please try again.");
-      return false;
-    }
-  }
-</script>
 
 </body>
 </html>

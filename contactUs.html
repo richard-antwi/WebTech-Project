@@ -82,6 +82,28 @@
                 border-radius: 5px;
                 cursor: pointer;
     }
+
+    /* Message styling */
+#feedbackMessage p {
+    margin: 0;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
         </style>
       </head>
       <body>
@@ -113,26 +135,25 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                // Function to parse URL parameters
                 function getQueryParam(param) {
                     var queryString = window.location.search;
                     var urlParams = new URLSearchParams(queryString);
                     return urlParams.get(param);
                 }
             
-                // Get the message parameter value
                 var message = getQueryParam("message");
+                var feedbackElement = document.getElementById("feedbackMessage");
             
-                // Decide what message to display based on the parameter
                 if (message === "success") {
-                    document.getElementById("feedbackMessage").innerHTML = "<p>Your message has been sent successfully!</p>";
+                    feedbackElement.innerHTML = "<p>Your message has been sent successfully!</p>";
+                    feedbackElement.className = 'success';
                 } else if (message === "error") {
-                    document.getElementById("feedbackMessage").innerHTML = "<p>There was an error sending your message. Please try again.</p>";
+                    feedbackElement.innerHTML = "<p>There was an error sending your message. Please try again.</p>";
+                    feedbackElement.className = 'error';
                 }
-            
-                // Optionally, style the message or add more logic as needed
             });
             </script>
+            
             
       </body>
     </html>
