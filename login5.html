@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN FORM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #080710;
+        }
+        .background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 430px;
+            height: 520px;
+        }
+        .background .shape {
+            position: absolute;
+            border-radius: 50%;
+        }
+        .shape:first-child {
+            background: linear-gradient(#1845ad, #23a2f6);
+            top: -80px;
+            left: -80px;
+            height: 200px;
+            width: 200px;
+        }
+        .shape:last-child {
+            background: linear-gradient(to right, #ff512f, #f09819);
+            bottom: -80px;
+            right: -30px;
+            height: 200px;
+            width: 200px;
+        }
+        form {
+            width: 400px;
+            background-color: rgba(255,255,255,0.13);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            padding: 50px 35px;
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-top: 30px;
+        }
+        input {
+            height: 50px;
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+            color: #ffffff;
+        }
+        ::placeholder {
+            color: #e5e5e5;
+        }
+        button {
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        .sign-up-link {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .sign-up-link a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="signup_process.php" method="post">
+        <h3>Login Here</h3>
+        <label for="username">Username</label>
+        <input type="text" class="form-control" placeholder="Email" id="username" name="username">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" placeholder="Password" id="password" name="password">
+        <button type="submit" class="btn btn-primary" name="login">Log In</button>
+        <div class="sign-up-link">
+            Don't have an account? <a href="signup.html">Sign up here.</a>
+        </div>
+        
+     
+    </form>
+</body>
+</html>

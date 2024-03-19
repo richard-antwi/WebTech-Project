@@ -1,8 +1,8 @@
+login.html
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <!-- Design by stevefreecoding -->
     <title>LOGIN FORM</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -140,21 +140,24 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="signup_process.php" method="post">
+    <form form action="signup_process.php" method="post">
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email" id="username" name="username">
+        <input type="text" placeholder="Email or Phone" id="username" name="username">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password" name="password">
 
-        <button type="submit" name="login">Log In</button>
+        <button  class="btn btn-primary" name="login">Log In</button>
         <div class="sign-up-link">
             Don't have an account? <a href="signup.html">Sign up here.</a>
         </div>
         
-     
+        <!-- <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div> -->
     </form>
 </body>
 </html>
