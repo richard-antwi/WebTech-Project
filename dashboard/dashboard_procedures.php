@@ -29,5 +29,12 @@ if ($result->num_rows > 0) {
 } else {
   echo "0 results";
 }
+
+
+//Query for the data in the data table
+$sql = "SELECT username, first_name, last_name, date_of_birth FROM users";
+$result = $connection->query($sql);
+
+
 $connection->close();
 ?>

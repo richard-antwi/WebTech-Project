@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --primary-color: #3742fa;
+    --white-color: #ffffff;
+    --light-color: #ced6e0;
+    --dark-color: #2f3542;
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+::before, ::after{
+    box-sizing: border-box;
+}
+
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* a, button,div[role="button"]{
+    -webkit-tap-highlight-color: transparent;
+} */
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(3, 15, 85);
+    padding: 10px 20px;
+    margin: 0;
+    top: 0;
+    z-index: 1000;
+    position: sticky;
+    height: var(--header-height); /* Set the height */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 2.5em; /* Equivalent to 40px */
+    height: 2.5em; /* Equivalent to 40px */
+    margin-right: 0.3125em;
+}
+
+.logo h1 {
+    font-size: 12px; /* Small font size */
+    margin: 0;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 0.9375em;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(245, 238, 238);
+    font-size: 0.875em; /* Small font size */
+}
+
+
+
+h1{
+    margin-top: 50px;
+    margin-left: 510px;
+    font-size: 60px;
+    font-family: 'Karla', sans-serif;
+    font-weight: lighter;
+}
+
+/* Container styles */
+.mask {
+    background-color: rgb(39, 2, 126);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Content styles */
+.content {
+    flex-basis: 48%;   /* Take up 48% of the available width */
+    padding: 20px;
+    text-align: center;
+}
+
+.content h2 {
+    font-size: 2.5vw; /* Responsive font size */
+    color: white;
+}
+
+.content p {
+    font-size: 1.5vw; /* Responsive font size */
+    color: white;
+}
+
+.btn1 {
+    margin-top: 20px;
+}
+
+.content button {
+    margin: 1.25em 0.625em;
+    border-radius: 1.25em;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid rgb(247, 247, 247);
+    font-size: 1vw; 
+    background: transparent;
+    color: #f7ce1a;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1
+
+}
+
+span {
+    background: white;
+    height: 100px;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: width 0.5s;
+}
+
+button:hover span {
+    width: 100%;
+    height: 100%;
+}
+
+button:hover {
+    border: none;
+}
+
+
+/* Picture styles */
+.picture {
+    flex-basis: 48%;
+}
+
+.picture img {
+    width: 100%;
+    height: auto;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .content, .picture {
+        flex: 1 1 100%; /* Take up full width on smaller screens */
+    }
+
+    .btn {
+        font-size: 2vw; /* Increase font size for better readability on smaller screens */
+    }
+}
+
+/* Slider frame styles */
+
+.slider-frame{
+    /* border: 1px solid rgb(134, 236, 113); */
+    overflow: hidden;
+    height: 500px;
+    width: 900px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.slide-images{
+    display: flex;
+    width: 8000px; /* Total width of all slides (4000px for each image) */
+    height: 400px; /* Adjust as needed */
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bg{
+    position: relative;
+    width: 360px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    margin: 10px;
+    border: 1px solid #9b40f0;
+    border-radius: 20px;
+    background-image: url("image/members/bg1.png"); /* Replace 'path_to_your_image.jpg' with the path to your image */
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */ 
+    background-color: white;
+}
+
+.member{
+    flex: 0 0 400px; /* Width of each slide (200px per image) */
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.member img {
+    width: 360px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+#meet{
+    color: var(--primary-color);
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 40px; /* Adjust as needed */
+    font-weight: 800;
+}
+
+.member h3 {
+    font-size: 24px; /* Adjust as needed */
+    margin-bottom: 10px; /* Adjust as needed */
+    color: #3207f1; /* Adjust the color as needed */
+}
+
+.member p {
+    font-size: 18px; /* Adjust as needed */
+    color: #0c08d4; /* Adjust the color as needed */
+}
+
+
+
+  /* for the swiper */
+
+.site{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.testi{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.testi .head{
+    text-align: center;
+    margin-bottom: 60PX;
+}
+
+.testi .head h3{
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 50px;
+}
+
+.testi .head p{
+    color: var(--primary-color);
+}
+
+.testi .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 30px 0;
+}
+
+
+
+/* setting thumbnails */
+
+.testi  .thumbnail {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.testi .thumbnail img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.testi .thumbnail::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% + 30px);
+    height: calc(100% + 10px);
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    z-index: -1;
+    box-shadow: var(--box-shadow);
+    transition: border-radius .5s .3s;
+}
+
+.testi .swiper-slide-active .thumbnail::before{
+    border-radius: 33% 67% 50% 50% / 50% 14% 86% 50%;  
+}
+
+.testi .aside {
+    position: relative;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.testi .aside > p{
+    position: relative;
+    font-size: 14px;
+    line-height: normal;
+    margin-bottom: 30px;
+}
+
+.testi .aside > p::before,
+.testi .aside > p::after{
+    font-family: serif;
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1;
+    position: absolute;
+    color: var(--light-color);
+    z-index: -1;
+}
+
+.testi .aside > p::before{
+    content: open-quote;
+    top: -44px;
+    left: 1%;
+}
+
+.testi .aside > p::after{
+    content: close-quote;
+    right: -1;
+}
+
+.testi .aside .name {
+    position: relative;
+    width: -moz-fit-content;
+    width: fit-content;
+    line-height: 1;
+}
+
+.testi .aside .name h4{
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--primary-color);
+    opacity: .8;
+}
+
+.testi .aside .name p{
+    font-size: 15px;
+    text-align: right;
+}
+
+    /* slider */
+.testi :is(.swiper-button-next, .swiper-button-prev){
+    background-color: var(--light-color);
+    top: 35%;
+    width: 38;
+    height: 38;
+    border-radius: 50%;
+    transition: background-color .3s;
+    box-shadow: var(--box-shadow);
+}
+.testi :is(.swiper-button-next, .swiper-button-prev):hover{
+    background-color: var(--primary-color);
+}
+
+.testi :is(.swiper-button-next, .swiper-button-prev)::after{
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--white-color)
+}
+
+.testi .swiper-pagination{
+    position: relative;
+}
+
+.testi .swiper-pagination span{
+    background-color: var(--light-color);
+    transition: width .3s;
+    opacity: 1;
+}
+
+.testi .swiper-pagination .swiper-pagination-bullet-active{
+    width: 26px;
+    border-radius: 4px;
+    background-color: var(--primary-color);
+}
+
+.swiper-pagination-bullet-active {
+    transform: translateX(-50%);
+}
+
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+    .testi .wrapper{
+        flex-direction: row;
+        padding: 30px 100px;
+    }
+    .testi .thumbnail{
+        width: 200px;
+        height: 200px;
+    }
+    .testi :is(.swiper-button-next, .swiper-button-prev){
+        top: 50%;
+    }
+}

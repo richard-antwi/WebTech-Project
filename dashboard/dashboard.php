@@ -1,3 +1,25 @@
+<?php 
+include('delete.php'); 
+
+
+// Query to fetch all member records
+$sql = "SELECT * FROM users";
+$result = $connection->query($sql);
+// Check if there are results
+if ($result->num_rows > 0) {
+    $members = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $members[] = $row; // Store member records in an array
+    }
+} else {
+    // No members found
+    $members = [];
+}
+
+
+?>
+               
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,22 +34,35 @@
     <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <title>Dashboard</title>
-    <script>
-  function deleteRecord(rowId) {
-    var row = document.getElementById(rowId);
-    row.parentNode.removeChild(row);
-  }
-  function editRecord(rowId) {
-    var row = document.getElementById(rowId);
-    var cells = row.cells;
-    for (var i = 0; i < cells.length - 1; i++) {
-      var newData = prompt("Enter new data for the record:", cells[i].innerText);
-      if (newData !== null) {
-        cells[i].innerText = newData;
-      }
-    }
-  }
-</script>
+    <style>
+      .custom-delete-btn {
+    padding: 5px 10px;
+    border: 1px solid #dc3545;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-edit-btn {
+    padding: 5px 10px;
+    border: 1px solid #28a745;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-delete-btn:hover {
+    background-color: #c82333;
+}
+.custom-edit-btn:hover {
+    background-color: #28a745;
+}
+    </style>
+   
   </head>
   <body>
     
@@ -115,17 +150,17 @@
               </a>
             </li>
             <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
-            <li>
+            <!-- <li>
               <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
                 Interface
               </div>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a href="#" class="nav-link px-3">
                 <span class="me-2"><i class="bi bi-book-fill"></i></span>
                 <span>Pages</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
@@ -157,7 +192,7 @@
           </div>
 
           <div class="col-md-3 mb-3">
-            <div class="card bg-primary text-white h-100">
+            <div class="card bg-success text-white h-100">
               <div class="card-body py-5">
                 <h5 class="card-title">Total Users</h5>
                 <h3 class="card-text"><?php include('dashboard_procedures.php'); 
@@ -174,7 +209,7 @@
 
 
 
-          <div class="col-md-3 mb-3">
+          <!-- <div class="col-md-3 mb-3">
             <div class="card bg-success text-white h-100">
               <div class="card-body py-5">Success Card</div>
               <div class="card-footer d-flex">
@@ -184,11 +219,11 @@
                 </span>
               </div>
             </div>
-          </div>
+          </div> -->
          
 
           <!-- Chart graphs -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-6 mb-3">
             <div class="card h-100">
               <div class="card-header">
@@ -211,13 +246,15 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Data Table -->
         <div class="row">
           <div class="col-md-12 mb-3">
             <div class="card">
               <div class="card-header">
+             
+
                 <span><i class="bi bi-table me-2"></i></span> Users Data
               </div>
               <div class="card-body">
@@ -229,26 +266,43 @@
                   >
                     <thead>
                       <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                        <th>Product</th>
-                        <th>Price</th>
+                        <th>User Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Date of Birth</th>
                         <th>Action</th>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <tr id= 'r1'>
-                        <td>John Doe</td>
-                        <td>john.doe@gmail.com</td>
-                        <td>25</td>
-                        <td>2 Bedroom Bungalow</td>
-                        <td>GHc 20,000</td>
-                        <td>
-                          <button onclick="editRecord('r1')">Edit</button>
-                          <button onclick="deleteRecord('r1')">Delete</button>
-                        </td>
-                    </tbody>
+                    </thead>   
+                    <tbody>   
+<?php if (!empty($members)): ?>
+    <?php foreach ($members as $row): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($row['username']); ?></td>
+            <td><?php echo htmlspecialchars($row['first_name']); ?></td>
+            <td><?php echo htmlspecialchars($row['last_name']); ?></td>
+            <td><?php echo htmlspecialchars($row['date_of_birth']); ?></td>
+            <td> 
+                <form action="delete.php" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                    <button type="submit" name="action" value="delete" class="btn btn-danger">Delete</button>
+                </form>
+                <form action="edit.php" method="get" style="display:inline;">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <button type="submit" class="btn btn-success">Edit</button>
+                </form>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr><td colspan="5">No data found</td></tr>
+<?php endif; ?>
+</tbody>
+
+
+
+                   
+  
+
                   </table>
                 </div>
               </div>
