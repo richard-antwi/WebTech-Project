@@ -130,7 +130,7 @@
         </nav>
       </div>
     </div>
-  
+  <!-- Mian content -->
     <main class="mt-5 pt-3">
       <div class="container-fluid">
         <div class="row">
@@ -138,10 +138,15 @@
             <h4>Dashboard</h4>
           </div>
         </div>
+        <!-- Card -->
         <div class="row">
           <div class="col-md-3 mb-3">
             <div class="card bg-primary text-white h-100">
-              <div class="card-body py-5">Primary Card</div>
+            <div class="card-body py-5">
+                <h5 class="card-title">Number of Admins</h5>
+                <h3 class="card-text"><?php include('dashboard_procedures.php'); 
+                echo $totalAdmin; ?></h3>
+              </div>
               <div class="card-footer d-flex">
                 View Details
                 <span class="ms-auto">
@@ -150,6 +155,25 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="card bg-primary text-white h-100">
+              <div class="card-body py-5">
+                <h5 class="card-title">Total Users</h5>
+                <h3 class="card-text"><?php include('dashboard_procedures.php'); 
+                echo $totalPeople; ?></h3>
+              </div>
+              <div class="card-footer d-flex">
+                View Details
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+
+
           <div class="col-md-3 mb-3">
             <div class="card bg-success text-white h-100">
               <div class="card-body py-5">Success Card</div>
@@ -162,6 +186,8 @@
             </div>
           </div>
          
+
+          <!-- Chart graphs -->
         <div class="row">
           <div class="col-md-6 mb-3">
             <div class="card h-100">
@@ -186,11 +212,13 @@
             </div>
           </div>
         </div>
+
+        <!-- Data Table -->
         <div class="row">
           <div class="col-md-12 mb-3">
             <div class="card">
               <div class="card-header">
-                <span><i class="bi bi-table me-2"></i></span> Data Table
+                <span><i class="bi bi-table me-2"></i></span> Users Data
               </div>
               <div class="card-body">
                 <div class="table-responsive">
