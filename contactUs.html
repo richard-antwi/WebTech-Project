@@ -6,8 +6,88 @@
     <title>Contact and Help Page</title>
     <head>
         <title>Contact Us</title>
+        <style>
+            body {
+      background-image: url('C:\Users\Rosemond Arhin\Desktop\nat\photo_2024-03-18_19-38-30.jpg');
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar {
+      background-color: #131772;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+    
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    .main-content {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 80px;
+    }
+    
+    .form-container {
+      background-color: #afa5eeec;
+      color: white;
+      padding: 20px;
+      width: 45%;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-container h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    
+    .form-container p {
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+    
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container textarea[name="message"] {
+      width: 90%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    
+    .form-container textarea {
+      width: 100%;
+      padding: 10
+    }
+    button {
+                background-color: #3311bdce; 
+                color: white;
+                padding: 8px 15px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+    }
+        </style>
       </head>
       <body>
+        <!-- Place this where you want the message to appear -->
+            <div id="feedbackMessage"></div>
+
         <div class="background-image"></div>
         <div class="navbar">
           <a href="#home">Home</a>
@@ -18,95 +98,42 @@
           <div class="form-container">
             <h1>Contact Us</h1>
             <p><h4>Please fill out the form below to contact us.</h4></p>
-            <form action="/submit_form" method="post">
+            <form action="contactUs.php" method="post">
               <input type="text" name="name" placeholder="Name" required>
               <input type="email" name="email" placeholder="Email" required>
               <textarea name="message" rows="5" cols="30" placeholder="Message" required></textarea>
-              <button type="submit">SEND</button>
+              <button type="submit" name="send">SEND</button>
             </form>
-            <p><h4>Email: <a href="naterial12345gh@gmail.com">naterial12345gh@gmail.com</a></h4></p>
-            <p><h4>Phone: +233 59 178 3381</h4></p>
+            
           </div>
           <div class="image-container">
-            <img src="C:\Users\Rosemond Arhin\Desktop\nat\photo_2024-03-18_19-31-40.jpg" width="650" height="530" alt="Image">
+            <img src="img/contact.jpg" width="650" height="530" alt="Image">
           </div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Function to parse URL parameters
+                function getQueryParam(param) {
+                    var queryString = window.location.search;
+                    var urlParams = new URLSearchParams(queryString);
+                    return urlParams.get(param);
+                }
+            
+                // Get the message parameter value
+                var message = getQueryParam("message");
+            
+                // Decide what message to display based on the parameter
+                if (message === "success") {
+                    document.getElementById("feedbackMessage").innerHTML = "<p>Your message has been sent successfully!</p>";
+                } else if (message === "error") {
+                    document.getElementById("feedbackMessage").innerHTML = "<p>There was an error sending your message. Please try again.</p>";
+                }
+            
+                // Optionally, style the message or add more logic as needed
+            });
+            </script>
+            
       </body>
     </html>
-    <style>
-        body {
-  background-image: url('C:\Users\Rosemond Arhin\Desktop\nat\photo_2024-03-18_19-38-30.jpg');
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar {
-  background-color: #131772;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.navbar a {
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.main-content {
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 80px;
-}
-
-.form-container {
-  background-color: #afa5eeec;
-  color: white;
-  padding: 20px;
-  width: 45%;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.form-container h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.form-container p {
-  margin-bottom: 10px;
-  color: #ccc;
-}
-
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container textarea[name="message"] {
-  width: 90%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.form-container textarea {
-  width: 100%;
-  padding: 10
-}
-button {
-            background-color: #3311bdce; 
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-}
-    </style>
+    
