@@ -1,6 +1,9 @@
 <?php 
-include('delete.php'); 
+include('../connection.php'); 
 
+if (isset($_GET['message'])) {
+  echo htmlspecialchars($_GET['message']);
+}
 
 // Query to fetch all member records
 $sql = "SELECT * FROM users";
@@ -183,7 +186,7 @@ if ($result->num_rows > 0) {
                 echo $totalAdmin; ?></h3>
               </div>
               <div class="card-footer d-flex">
-                View Details
+                <!-- View Details -->
                 <span class="ms-auto">
                   <i class="bi bi-chevron-right"></i>
                 </span>
@@ -199,7 +202,23 @@ if ($result->num_rows > 0) {
                 echo $totalPeople; ?></h3>
               </div>
               <div class="card-footer d-flex">
-                View Details
+                <!-- View Details -->
+                <span class="ms-auto">
+                  <i class="bi bi-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white h-100">
+              <div class="card-body py-5">
+                <h5 class="card-title">Number of Messages</h5>
+                <h3 class="card-text"><?php include('dashboard_procedures.php'); 
+                echo $messages; ?></h3>
+              </div>
+              <div class="card-footer d-flex">
+                <!-- View Details -->
                 <span class="ms-auto">
                   <i class="bi bi-chevron-right"></i>
                 </span>
@@ -284,7 +303,9 @@ if ($result->num_rows > 0) {
             <td> 
                 <form action="delete.php" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
-                    <button type="submit" name="action" value="delete" class="btn btn-danger">Delete</button>
+                    
+                    <button type="button" class="btn btn-danger deleteBtn" data-id="<?php echo $row['id']; ?>">Delete</button>
+
                 </form>
                 <form action="edit.php" method="get" style="display:inline;">
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
@@ -311,6 +332,47 @@ if ($result->num_rows > 0) {
         </div>
       </div>
     </main>
+
+    <!-- Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this record? This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <!-- The form action and hidden inputs will be dynamically updated by JavaScript -->
+        <form id="deleteForm" action="delete.php" method="post">
+          <input type="hidden" name="id" value="">
+          <input type="hidden" name="confirm_delete" value="yes">
+          <button type="submit" class="btn btn-danger">Yes, delete it!</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// When the document is ready
+document.addEventListener("DOMContentLoaded", function() {
+  // Find all delete buttons and set up click event listeners
+  document.querySelectorAll('.deleteBtn').forEach(button => {
+    button.addEventListener('click', function() {
+      const recordId = this.getAttribute('data-id'); // Get the record ID from the button
+      // Set the record ID in the modal's form
+      document.querySelector('#deleteForm input[name="id"]').value = recordId;
+      // Show the modal
+      var deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'));
+      deleteModal.show();
+    });
+  });
+});
+</script>
+
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="./js/jquery-3.5.1.js"></script>

@@ -30,6 +30,19 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 
+// SQL to count total number of people
+$sql = "SELECT COUNT(*) AS messages FROM contacts";
+$result = $connection->query($sql);
+
+$messages = 0;
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $messages = $row["messages"];
+  }
+} else {
+  echo "0 results";
+}
 
 //Query for the data in the data table
 $sql = "SELECT username, first_name, last_name, date_of_birth FROM users";

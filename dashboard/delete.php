@@ -1,22 +1,34 @@
 <?php
 include '../connection.php'; // Database connection
 
-// Prompt for confirmation before actual deletion
-if (isset($_POST['action']) && $_POST['action'] == 'confirm_delete') {
+// Initial Delete Action from the Form
+if (isset($_POST['action']) && $_POST['action'] == 'delete') {
     $id = $_POST['id'];
-    // Redirect to a confirmation page or render a confirmation message here
-    // For simplicity, let's render a confirmation in the same script
-    echo "<h2>Are you sure you want to delete this record?</h2>
-          <form action='delete.php' method='post'>
-            <input type='hidden' name='id' value='{$id}'>
-            <input type='hidden' name='confirm_delete' value='yes'>
-            <button type='submit'>Yes, delete it!</button>
-          </form>
-          <a href='dashboard.php'>Cancel</a>";
+    // Assuming Bootstrap CSS is included in your project
+    echo "<div class='container mt-5'>
+            <div class='card text-center'>
+                <div class='card-header'>
+                    Confirm Deletion
+                </div>
+                <div class='card-body'>
+                    <h5 class='card-title'>Are you sure you want to delete this record?</h5>
+                    <p class='card-text'>This action cannot be undone.</p>
+                    <form action='delete.php' method='post'>
+                        <input type='hidden' name='id' value='{$id}'>
+                        <input type='hidden' name='confirm_delete' value='yes'>
+                        <button type='submit' class='btn btn-danger'>Yes, delete it!</button>
+                    </form>
+                </div>
+                <div class='card-footer text-muted'>
+                    <a href='dashboard.php' class='btn btn-secondary'>Cancel</a>
+                </div>
+            </div>
+          </div>";
     exit;
 }
 
-// Handle actual deletion after confirmation
+
+// Confirmation Received and Process Deletion
 if (isset($_POST['confirm_delete']) && $_POST['confirm_delete'] == 'yes') {
     $id = $_POST['id'];
 
