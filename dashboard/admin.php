@@ -36,7 +36,7 @@ if(isset($_POST['login'])){
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password_hash'])) {
             $_SESSION['username'] = $username;
-            header("Location: dashboard.html");
+            header("Location: dashboard.php");
             exit;
         } else {
             echo "Incorrect password";

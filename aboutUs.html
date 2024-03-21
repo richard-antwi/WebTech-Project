@@ -2,34 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="aboutUs.css">
+    <title>About Us</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="bootstrap.5.3.2/css/bootstrap.min.css">
+    <style>
+        /* CSS for card images */
+        .card-img-top {
+            height: 200px; /* Set the height as per your requirement */
+            object-fit: cover; /* Ensure the image covers the entire space */
+        }
+
+        /* CSS for card animations */
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            transition: all 0.4s;
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        .card-body {
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .card:hover .card-body {
+            transform: translateY(-50%);
+        }
+
+        /* CSS for about image */
+        .about-img {
+            margin-bottom: 20px; /* Add some bottom margin for spacing */
+        }
+
+        .about-img img {
+            width: 100%; /* Make the image fill its container */
+            height: auto; /* Ensure aspect ratio is maintained */
+        }
+    </style>
 </head>
 <body>
-    
-    <div class="heading">
-        <h1>About us </h1>
-        <p>Welcome to [Real Estate Company Name]: Your Trusted Partner in Finding Your Dream Home and Maximizing Your Real Estate Investments </p>
+    <div class="parent">
+        <!-- header section -->
+<header>
+    <div class="logo">
+        <img src="image/logo.jpg" alt="Logo">
+        <h1 style="font-size: 20px;">Builders Box Estate Ltd</h1>
     </div>
-    <div class="container" >
-        <section class="about ">
-            <div class="about-image">
-                <img src="C:\Users\HP\Downloads\Beijing BFS Fengtai.jpeg" alt="">
+        <nav >
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <!-- <li><a href="#">Services</a></li> -->
+                <li><a href="contactUs.html">Contact</a></li>
+            </ul>
+        </nav>
+</header>
+    <!-- About Section -->
+    <div class="container mt-5">
+        <div class="about-area">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="about-img">
+                        <img src="image/OIP (1).jpeg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-lg-offset-1">
+                    <div class="about-text">
+                        <h2>About Us</h2>
+                        <p>Welcome to Builders Box Estate Ltd, your trusted partner in real estate. At Builders Box Estate Ltd, we are dedicated to providing exceptional, personalized service to each and every one of our clients. With a wealth of experience and expertise in the real estate industry, we strive to exceed expectations and deliver unparalleled results.</p>
+                        <!-- <p>Whether you're buying, selling, or renting, our team of professionals is here to guide you through every step of the process. We understand that real estate transactions can be complex and daunting, which is why we're committed to providing you with the support and resources you need to make informed decisions.</p> -->
+                        <!-- <p>At Builders Box Estate Ltd, we prioritize integrity, transparency, and client satisfaction above all else. We believe in building long-lasting relationships based on trust, professionalism, and mutual respect.</p> -->
+                        <p>Thank you for considering Builders Box Estate Ltd for your real estate needs. We look forward to helping you achieve your goals and making your real estate dreams a reality.</p>
+                    </div>                        
+                </div>
             </div>
-            <div class="about-content">
-                <h2>Warm embrace in cup</h2>
-                <p>At [Real Estate Company Name], we understand that buying or selling a property is one of the most significant decisions you'll make in your lifetime. That's why we're committed to providing exceptional service and support throughout every step of your real estate journey.
+        </div>
+    
 
-                    With years of experience in the industry, our team of dedicated professionals possesses the expertise and knowledge to guide you through the complexities of the real estate market. Whether you're a first-time buyer, seasoned investor, or looking to sell your property, we're here to help you achieve your goals.
-                    
-                    Our mission is simple: to deliver unparalleled customer service, transparency, and integrity in all our dealings. We prioritize our clients' needs and strive to exceed their expectations by offering personalized solutions tailored to their unique requirements.
-                    
-                    At [Real Estate Company Name], we believe in the power of relationships. We foster strong connections with our clients, building trust and rapport that lasts a lifetime. Our commitment to excellence has earned us a reputation for reliability and professionalism within the industry.
-                    
-                    From luxurious estates to cozy starter homes, we have an extensive portfolio of properties to suit every lifestyle and budget. Whether you're searching for your dream home or looking to maximize your investment potential, we have the resources and expertise to make your real estate dreams a reality. </p>
-                     <a href="" class="read-more">Contact Us</a>
+    <!-- Cards Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" src="image/R.jpeg" alt="We Buy">
+                    <div class="card-body">
+                        <h5 class="card-title">We Buy Properties</h5>
+                        <p class="card-text">Looking to sell your property? We offer competitive prices and a hassle-free experience.</p>
+                        <a href="#" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
             </div>
-        </section>
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" src="image/OIP.jpeg" alt="We Sell">
+                    <div class="card-body">
+                        <h5 class="card-title">We Sell Properties</h5>
+                        <p class="card-text">Explore our listings and find your dream home or investment property today.</p>
+                        <a href="#" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <img class="card-img-top" src="image/R (1).jpeg" alt="We Rent">
+                    <div class="card-body">
+                        <h5 class="card-title">We Rent Properties</h5>
+                        <p class="card-text">Discover rental properties tailored to your needs and preferences.</p>
+                        <a href="#" class="btn btn-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

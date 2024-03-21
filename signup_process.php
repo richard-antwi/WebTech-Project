@@ -20,7 +20,7 @@ if(isset($_POST['signup'])){
 
     // Execute the prepared statement
     if ($stmt->execute()) {
-        header("Location: login.html");
+        header("Location: login 2.html");
         exit;
     } else {
         echo "Error: " . $stmt->error;

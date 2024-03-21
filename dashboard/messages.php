@@ -20,6 +20,20 @@ if ($result->num_rows > 0) {
     $members = [];
 }
 
+// Query to fetch all member records
+$sql = "SELECT * FROM contacts";
+$result = $connection->query($sql);
+// Check if there are results
+if ($result->num_rows > 0) {
+    $message = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $message[] = $row; // Store member records in an array
+    }
+} else {
+    // No members found
+    $message = [];
+}
 
 ?>
                
@@ -69,7 +83,7 @@ if ($result->num_rows > 0) {
   </head>
   <body>
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
         <button
           class="navbar-toggler"
@@ -103,7 +117,7 @@ if ($result->num_rows > 0) {
               </div>
             </li>
             <li>
-              <a href="#" class="nav-link px-3 active">
+              <a href="dashboard.php" class="nav-link px-3">
                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                 <span>Dashboard</span>
               </a>
@@ -115,7 +129,7 @@ if ($result->num_rows > 0) {
               </div>
             </li>
             <li>
-              <a href="messages.php" class="nav-link px-3">
+              <a href="#" class="nav-link px-3 active">
                 <span class="me-2"><i class="bi bi-book-fill"></i></span>
                 <span>Messages</span>
               </a>
@@ -158,6 +172,7 @@ if ($result->num_rows > 0) {
                 echo $totalPeople; ?></h3>
               </div>
               <div class="card-footer d-flex">
+              
                 <!-- View Details -->
                 <span class="ms-auto">
                   <i class="bi bi-chevron-right"></i>
@@ -201,21 +216,22 @@ if ($result->num_rows > 0) {
                   >
                     <thead>
                       <tr>
+                        <th>ID</th>
                         <th>User Name</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Date of Birth</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Date & Time</th>
                         <th>Action</th>
                       </tr>
                     </thead>   
                     <tbody>   
-<?php if (!empty($members)): ?>
-    <?php foreach ($members as $row): ?>
-        <tr>
-            <td><?php echo htmlspecialchars($row['username']); ?></td>
-            <td><?php echo htmlspecialchars($row['first_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['last_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['date_of_birth']); ?></td>
+<?php if (!empty($message)): ?>
+    <?php foreach ($message as $row): ?>
+        <tr><td><?php echo htmlspecialchars($row['id']); ?></td>
+            <td><?php echo htmlspecialchars($row['name']); ?></td>
+            <td><?php echo htmlspecialchars($row['email']); ?></td>
+            <td><?php echo htmlspecialchars($row['message']); ?></td>
+            <td><?php echo htmlspecialchars($row['submit_time']); ?></td>
             <td> 
                 <form action="delete.php" method="post" style="display:inline;">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
@@ -227,10 +243,10 @@ if ($result->num_rows > 0) {
                     <!-- <input type="hidden" name="editUserModal" value="<?php echo htmlspecialchars($row['id']); ?>"> -->
                     <button type="button" class="btn btn-success editBtn" 
     data-id="<?php echo htmlspecialchars($row['id']); ?>"
-    data-username="<?php echo htmlspecialchars($row['username']); ?>" 
-    data-first_name="<?php echo htmlspecialchars($row['first_name']); ?>"
-    data-last_name="<?php echo htmlspecialchars($row['last_name']); ?>" 
-    data-date_of_birth="<?php echo htmlspecialchars($row['date_of_birth']); ?>">
+    data-username="<?php echo htmlspecialchars($row['name']); ?>" 
+    data-first_name="<?php echo htmlspecialchars($row['email']); ?>"
+    data-last_name="<?php echo htmlspecialchars($row['message']); ?>" 
+    data-date_of_birth="<?php echo htmlspecialchars($row['submit_time']); ?>">
     Edit
 </button>
 
@@ -273,7 +289,7 @@ if ($result->num_rows > 0) {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <!-- The form action and hidden inputs will be dynamically updated by JavaScript -->
-        <form id="deleteForm" action="delete.php" method="post">
+        <form id="deleteForm" action="delete-message.php" method="post">
           <input type="hidden" name="id" value="">
           <input type="hidden" name="confirm_delete" value="yes">
           <button type="submit" class="btn btn-danger">Yes, delete it!</button>
@@ -283,32 +299,32 @@ if ($result->num_rows > 0) {
   </div>
 </div>
 
-<!-- Bootstrap Modal for Editing User Data -->
+<!-- Bootstrap Modal for Editing Message Data -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+        <h5 class="modal-title" id="editUserModalLabel">Edit Message</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="update_user.php" method="post" id="editForm">
+        <form action="update_message.php" method="post" id="editForm">
           <input type="hidden" name="id" id="edit-id">
           <div class="mb-3">
             <label for="edit-username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="edit-username" name="username" required>
+            <input type="text" class="form-control" id="edit-username" name="name" required>
           </div>
           <div class="mb-3">
-            <label for="edit-first-name" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="edit-first-name" name="first_name" required>
+            <label for="edit-first-name" class="form-label">Email</label>
+            <input type="text" class="form-control" id="edit-first-name" name="email" required>
           </div>
           <div class="mb-3">
-            <label for="edit-last-name" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="edit-last-name" name="last_name" required>
+            <label for="edit-last-name" class="form-label">Message</label>
+            <input type="text" class="form-control" id="edit-last-name" name="message" required>
           </div>
           <div class="mb-3">
-            <label for="edit-date-of-birth" class="form-label">Date of Birth</label>
-            <input type="date" class="form-control" id="edit-date-of-birth" name="date_of_birth" required>
+            <label for="edit-date-of-birth" class="form-label"></label>
+            <input type="text" class="form-control" id="edit-date-of-birth" name="submit_time" required>
           </div>
           <button type="submit" class="btn btn-success" name="submit">Update</button>
 
